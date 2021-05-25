@@ -14,14 +14,13 @@ package com.sejong.filecontrol.model;
  * ==========================================================
  *
  */
-public class fileVO {
+public class FileVO {
 	private String fileName;
 	private String fileType;
-	private Integer fileSize;
+	private Long fileSize;
 	private String fileUri;
+	private String userId;
 	private String dupCheck;
-	private String pathServer;
-	private String pathClient;
 	
 	public String getFileName() {
 		return fileName;
@@ -35,10 +34,10 @@ public class fileVO {
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
 	}
-	public Integer getFileSize() {
+	public Long getFileSize() {
 		return fileSize;
 	}
-	public void setFileSize(Integer fileSize) {
+	public void setFileSize(Long fileSize) {
 		this.fileSize = fileSize;
 	}
 	public String getFileUri() {
@@ -53,16 +52,11 @@ public class fileVO {
 	public void setDupCheck(String dupCheck) {
 		this.dupCheck = dupCheck;
 	}
-	public String getPathServer() {
-		return pathServer;
+	public String getUserId() {
+		return userId;
 	}
-	public void setPathServer(String pathServer) {
-		this.pathServer = pathServer;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getPathClient() {
-		return pathClient;
-	}
-	public void setPathClient(String pathClient) {
-		this.pathClient = pathClient;
-	}
+
 }

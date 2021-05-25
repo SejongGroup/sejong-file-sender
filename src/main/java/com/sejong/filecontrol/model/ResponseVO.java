@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class ResponseVO {
 	private ResultVO result;
-	private ArrayList<fileVO> file;
+	private ArrayList<FileVO> file;
 	private ServerVO server;
 	
 	public ResultVO getResult() {
@@ -27,10 +27,10 @@ public class ResponseVO {
 	public void setResult(ResultVO result) {
 		this.result = result;
 	}
-	public ArrayList<fileVO> getFile() {
+	public ArrayList<FileVO> getFile() {
 		return file;
 	}
-	public void setFile(ArrayList<fileVO> file) {
+	public void setFile(ArrayList<FileVO> file) {
 		this.file = file;
 	}
 	public ServerVO getServer() {

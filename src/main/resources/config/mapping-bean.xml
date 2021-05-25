@@ -12,18 +12,17 @@
 	</bean>
 	  
 	<aop:aspectj-autoproxy/>
-	
-	<!--<bean id="controllerAspect" class="com.sejong.cdbiz.aspect.ControllerAspect"/>
-	 <bean id="serviceAspect" class="com.sejong.dbiz.aspect.ServiceAspect" /> -->
+	<bean id="controllerAspect" class="com.sejong.filecontrol.aspect.ControllerAspect"/>
 	
 	<!-- for application.properties -->	
 	<bean id="propertySet" class="com.sejong.filecontrol.common.ApplicationProperty" >
-		<property name="uploadMentBasePath" value="${upload.ment.base.path}" />
+		<property name="gateWayUploadPath" value="${gateway.upload.path}" />
+		<property name="gateWayDownloadPath" value="${gateway.download.path}"/>
 	</bean>
 	
 	<!-- for uploading file-->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="5120000"/>
+		<property name="maxUploadSize" value="51200"/>						
 	</bean>
 </beans>
 	

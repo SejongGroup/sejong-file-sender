@@ -16,8 +16,9 @@ package com.sejong.filecontrol.model;
  */
 public class ServerVO {
 	private String serverIp;
-	private String userId;
-	private String userPw;
+	private String serverId;
+	private String serverPw;
+	private String path;
 	
 	public String getServerIp() {
 		return serverIp;
@@ -25,17 +26,22 @@ public class ServerVO {
 	public void setServerIp(String serverIp) {
 		this.serverIp = serverIp;
 	}
-	public String getUserId() {
-		return userId;
+	public String getServerId() {
+		return serverId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setServerId(String serverId) {
+		this.serverId = serverId;
 	}
-	public String getUserPw() {
-		return userPw;
+	public String getServerPw() {
+		return serverPw;
 	}
-	public void setUserPw(String userPw) {
-		this.userPw = userPw;
+	public void setServerPw(String serverPw) {
+		this.serverPw = serverPw;
 	}
-
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
 }
