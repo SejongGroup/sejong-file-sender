@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ment">
+	
+	<select id="selectCalledNumber" parameterType="com.sejong.cdbiz.dbiz.vo.CalledMentVO" resultType="integer">
+		SELECT 
+			count(*)
+		FROM 
+			TB_VNS_CALLED_MENT_NUMBER
+		WHERE LOGISTICS_CODE = #{logisticsCode}
+			AND VNS_NUMBER = #{vnsNumber}
+	</select>
+	
+	<insert id="insertCalledNumber" parameterType="com.sejong.cdbiz.dbiz.vo.CalledMentVO" >
+		INSERT INTO 
+			TB_VNS_CALLED_MENT_NUMBER (VNS_NUMBER, MENT_IDX, LOGISTICS_CODE, MOD_ID, MOD_DATE)
+		values (#{vnsNumber}, #{mentIdx}, #{logisCode}, #{modId}, SYSDATE)
+	</insert>
+	
+	<update id="updateCalledNumber" parameterType="com.sejong.cdbiz.dbiz.vo.CalledMentVO">
+	  	UPDATE
+	    	TB_VNS_CALLED_MENT_NUMBER 
+	  	SET
+    		VNS_NUMBER = #{vnsNumber}
+	    	, MENT_IDX = #{mentIdx}
+	    	, LOGISTICS_CODE = #{logisCode}
+	    	, MOD_ID = #{modId}
+	    	, MOD_DATE = SYSDATE
+	  	WHERE 
+	    	VNS_NUMBER = #{vnsNumber}
+	    	AND LOGISTICS_CODE = #{logisCode}
+	</update>
+	
+	<delete id="deleteCalledNumber" parameterType="com.sejong.cdbiz.dbiz.vo.CalledMentVO">
+  		DELETE FROM 
+    		TB_VNS_CALLED_MENT_NUMBER
+  		WHERE 
+    		VNS_NUMBER = #{vnsNumber}
+			AND LOGISTICS_CODE = #{logisCode}
+	</delete>
+	
+</mapper>

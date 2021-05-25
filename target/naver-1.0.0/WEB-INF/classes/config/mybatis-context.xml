@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	
+    <!--  pool을 이용하도록 변경 -->
+    <!--  tomcat의 설정과 연계 -->
+    <tx:annotation-driven  proxy-target-class="true"/>
+
+    <!-- DBIZ -->
+
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="jdbc/DBIZ_DB"/>
+        <property name="resourceRef" value="true"/>
+    </bean>
+    
+    <!--
+   	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>   		
+		<property name="url" value="${db.info.dbiz.url}"/>
+		<property name="username" value="VPN0504"/>
+		<property name="password" value="VPN0504123"/>
+		<property name="maxActive" value="20"/>
+		<property name="maxIdle" value="20"/>
+		<property name="maxWait" value="5000"/>
+		<property name="minIdle" value="2"/>
+		<property name="validationQuery" value="select 1 from dual"/>
+		<property name="validationQueryTimeout" value="30"/>
+   	</bean>
+   	-->
+    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="mapperLocations" value="classpath:query/*.xml" />
+    </bean>
+    
+    <bean id="sqlSession_DBIZ" class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>  
+
+     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="syncDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="jdbc/DBIZ_SYNC_DB"/>
+        <property name="resourceRef" value="true"/>
+    </bean>  
+    
+    <bean id="syncSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="syncDataSource" />
+      <property name="mapperLocations" value="classpath:query/*.xml" />
+    </bean>
+    
+    <bean id="syncSqlSession_DBIZ" class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg index="0" ref="syncSqlSessionFactory" />
+    </bean>
+	 
+     <bean id="syncTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="syncDataSource" />
+    </bean>
+     <!--// DBIZ -->
+     
+     <!-- CBIZ -->
+    <bean id="dataSource2" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="jdbc/CBIZ_DB"/>
+        <property name="resourceRef" value="true"/>
+    </bean>
+   
+    <bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource2" />
+      <property name="mapperLocations" value="classpath:query/*.xml" />
+    </bean>
+    
+    <bean id="sqlSession_CBIZ" class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg index="0" ref="sqlSessionFactory2" />
+    </bean>  
+
+     <bean id="transactionManager2" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource2" />
+    </bean>
+
+    <bean id="syncDataSource2" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="jdbc/CBIZ_SYNC_DB"/>
+        <property name="resourceRef" value="true"/>
+    </bean>  
+    
+    <bean id="syncSqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="syncDataSource2" />
+      <property name="mapperLocations" value="classpath:query/*.xml" />
+    </bean>
+    
+    <bean id="syncSqlSession_CBIZ" class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg index="0" ref="syncSqlSessionFactory2" />
+    </bean>
+	 
+     <bean id="syncTransactionManager2" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="syncDataSource2" />
+    </bean>
+     <!--// DBIZ -->
+
+	
+	
+</beans>
