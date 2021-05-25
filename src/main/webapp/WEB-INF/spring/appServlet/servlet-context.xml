@@ -38,7 +38,7 @@
 	
 
 	<!-- base path 설정 -->
-	<context:component-scan base-package="com.sejong.cdbiz" />
+	<context:component-scan base-package="com.sejong.filecontrol" />
 	
 	<!-- 매핑 설정 -->
 	<beans:import resource="classpath:/config/mapping-bean.xml" /> 

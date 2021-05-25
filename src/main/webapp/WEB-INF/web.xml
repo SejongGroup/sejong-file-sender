@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
-	<!--  CORSFilter 설정 -->
+	<!--  CORSFilter 설정
 	<filter>
 		<filter-name>CORSFilter</filter-name>
 		<filter-class>com.sejong.cdbiz.util.CORSFilter</filter-class>
@@ -10,6 +10,7 @@
 		<filter-name>CORSFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	-->
 	
 	<!--  톰캣 설정 -->
 	<resource-ref>
@@ -54,7 +55,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- XSS 처리 -->
+	<!-- XSS 처리 
 	<filter>
 	    <filter-name>XSS</filter-name>
 	    <filter-class>com.sejong.cdbiz.filter.CrossScriptingFilter</filter-class>
@@ -63,6 +64,7 @@
 	    <filter-name>XSS</filter-name>
 	    <url-pattern>/*</url-pattern>
 	</filter-mapping>
+	-->
 	
 	<!-- 세션 타임아웃 ? -->
 	<session-config>

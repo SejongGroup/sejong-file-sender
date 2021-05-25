@@ -12,16 +12,17 @@
 	</bean>
 	  
 	<aop:aspectj-autoproxy/>
-	<bean id="controllerAspect" class="com.sejong.cdbiz.aspect.ControllerAspect"/>
-	<!-- <bean id="serviceAspect" class="com.sejong.dbiz.aspect.ServiceAspect" /> -->
 	
-	<!-- for application.properties -->
+	<!--<bean id="controllerAspect" class="com.sejong.cdbiz.aspect.ControllerAspect"/>
+	 <bean id="serviceAspect" class="com.sejong.dbiz.aspect.ServiceAspect" /> -->
+	
+	<!-- for application.properties 
 	<bean id="propertySet" class="com.sejong.cdbiz.common.ApplicationProperty" >
 		<property name="requestBodyEncryptMode" value="${request.body.encrypt.mode}" />
 		<property name="dbSyncMode" value="${db.sync.mode}" />
 		<property name="sessionDelay" value="${logistics.session.delay}" />
 	</bean>
-
+	-->	
 	<!-- for uploading file-->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="5120000"/>
