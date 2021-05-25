@@ -42,8 +42,6 @@
 	
 	<!-- 매핑 설정 -->
 	<beans:import resource="classpath:/config/mapping-bean.xml" /> 
-	<beans:import resource="classpath:/config/mybatis-context.xml" /> 
-	<!-- <beans:import resource="classpath:/config/logger-config.xml" />  --> 
 
 	<!-- log4j 설정 -->
 	<beans:bean id="log4jInitialization" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
