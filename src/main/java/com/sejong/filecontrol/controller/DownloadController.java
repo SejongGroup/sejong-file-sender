@@ -85,7 +85,7 @@ public class DownloadController {
 		serverVO.setPath(path);
 		
 		/* SSH 로그인 후 파일을 받아와서 저장한 후 VO 객체에 뿌려줌 - 박종선 역할 */
-		ResponseVO responseVO = downloadService.download(fileVO, serverVO);
+		ResponseVO responseVO = downloadService.download(fileVO, serverVO, request);
 		responseVO.setResult(ErrorCode.getResultVO(ErrorCode.SUCCESS));
 
 		CommonUtil.setResponse(response, responseVO);

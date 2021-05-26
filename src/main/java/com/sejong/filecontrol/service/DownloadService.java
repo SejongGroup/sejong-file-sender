@@ -73,7 +73,7 @@ public class DownloadService {
 	 * @param fileVO
 	 * @param serverVO
 	 */
-	public ResponseVO download(FileVO fileVO, ServerVO serverVO) {
+	public ResponseVO download(FileVO fileVO, ServerVO serverVO, HttpServletRequest request) {
 		ResponseVO responseVO = new ResponseVO();
 		SCPUtil scpUtil = new SCPUtil();
 		scpUtil.init(serverVO.getServerIp(), serverVO.getServerId(), serverVO.getServerPw());
@@ -104,7 +104,7 @@ public class DownloadService {
 		ArrayList<FileVO> list = new ArrayList<FileVO>();
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("http://172.16.81.49:57070/filecontrol/download/file?userId=");
+		sb.append("http://" + request.getServerName() + ":" + request.getServerPort() + "/filecontrol/download/file?userId=");
 		sb.append(fileVO.getUserId());
 		sb.append("&fileName=");
 		sb.append(fileVO.getFileName());
