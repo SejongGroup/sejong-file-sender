@@ -62,4 +62,28 @@ public class GlobalExceptionHandler {
     	responseVo.setResult(ErrorCode.getResultVO(ErrorCode.DELETEFILE_ERROR));
     	CommonUtil.setResponse(response, responseVo);
     }
+    
+    @ExceptionHandler(FileExistsException.class)
+    public void handleFileExistsException(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	logger.info("handleFileExistsException : " + request.getRequestURI());
+    	ResponseVO responseVo = new ResponseVO();
+    	responseVo.setResult(ErrorCode.getResultVO(ErrorCode.DELETEFILE_ERROR));
+    	CommonUtil.setResponse(response, responseVo);
+    }
+    
+    @ExceptionHandler(NotKnowException.class)
+    public void handleNotKnowException(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	logger.info("handleNotKnowException : " + request.getRequestURI());
+    	ResponseVO responseVo = new ResponseVO();
+    	responseVo.setResult(ErrorCode.getResultVO(ErrorCode.UNKNOWN_ERROR));
+    	CommonUtil.setResponse(response, responseVo);
+    }
+    
+    @ExceptionHandler(SCPException.class)
+    public void handleSCPException(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	logger.info("handleSCPException : " + request.getRequestURI());
+    	ResponseVO responseVo = new ResponseVO();
+    	responseVo.setResult(ErrorCode.getResultVO(ErrorCode.SCP_ERROR));
+    	CommonUtil.setResponse(response, responseVo);
+    }
 }

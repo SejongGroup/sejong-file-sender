@@ -45,7 +45,7 @@ public class UploadController {
 	private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
 	
 	@Autowired
-	UploadService commonService; 
+	UploadService uploadService; 
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public void fileUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam(value="userId",required=false) String userId,
@@ -62,10 +62,11 @@ public class UploadController {
 			throw new ParameterException();
 		}
 		
-		if (!userId.equals("root")) {
-			logger.info("권한이 없는 아이디로 진행한 경우 Exception이 발생됩니다.");
-			throw new AuthorizeException();
-		}
+//		/* 권한 설정 */
+//		if (!userId.equals("root")) {
+//			logger.info("권한이 없는 아이디로 진행한 경우 Exception이 발생됩니다.");
+//			throw new AuthorizeException();
+//		}
 		
 		/* VO 객체에 파라미터 값 삽입 */
 		FileVO fileVO = new FileVO();
@@ -77,20 +78,7 @@ public class UploadController {
 		serverVO.setServerPw(serverPw);
 		serverVO.setPath(path);
 		 
-		ResponseVO responseVO = commonService.uploadFiles(file, fileVO);
-		/* 저쪽 서버까지 파일 업로드가 끝났으면 파일을 삭제한다. */
-		try {
-			if (responseVO.getFile() != null && responseVO.getFile().size() >= 1) {
-				logger.info("파일 삭제처리 메소드 추가 중입니다.");
-				for (FileVO f : responseVO.getFile()) {
-					logger.info(f.getFileName() + " " + f.getFileUri());
-				}
-			}
-		} catch (Exception e) {
-			throw new DeleteFilesException();
-		}
-
-		
+		ResponseVO responseVO = uploadService.uploadFiles(file, fileVO, serverVO);
 		CommonUtil.setResponse(response, responseVO);
 	}
 }

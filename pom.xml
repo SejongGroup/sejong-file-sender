@@ -19,14 +19,14 @@
 	<!-- sejong Nexus -->
     <repositories>
         <repository>
-            <id>nexus</id>
+            <id>nexus_jongsun</id>
         	<url>http://172.16.81.49:8081/repository/sejong-group</url>
         </repository>
     </repositories>
     
     <pluginRepositories>
         <pluginRepository>
-            <id>nexus</id>
+            <id>nexus_jongsun</id>
             <url>http://172.16.81.49:8081/repository/sejong-group</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>true</enabled></snapshots>
@@ -128,8 +128,8 @@
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -269,6 +269,13 @@
 			<groupId>sejong.api</groupId>
 			<artifactId>sejong-api</artifactId>
 			<version>1.0.0</version>
+		</dependency>
+		
+		<!-- jsch -->
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.50</version>
 		</dependency>
 	</dependencies>
 	

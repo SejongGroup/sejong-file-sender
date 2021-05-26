@@ -27,6 +27,8 @@ public class ErrorCode {
 	public static final String DIRECTORY_ERROR = "06";
 	public static final String FILEPATH_ERROR = "07";
 	public static final String DELETEFILE_ERROR = "08";
+	public static final String FILEEXISTS_ERROR = "09";
+	public static final String SCP_ERROR = "10";
 	public static final String UNKNOWN_ERROR = "99";
 	
 	@SuppressWarnings("unchecked")
@@ -43,6 +45,8 @@ public class ErrorCode {
 			put(IO_ERROR, "파일을 읽는 도중에 오류가 발생하였습니다.");
 			put(DIRECTORY_ERROR, "디렉토리를 생성하는 도중에 오류가 발생하였습니다.");
 			put(FILEPATH_ERROR, "파일 생성 중 경로 오류가 발생하였습니다.");
+			put(FILEEXISTS_ERROR, "파일이 존재하지 않습니다.");
+			put(SCP_ERROR, "SSH 접근 도중 에러가 발생하였습니다. 접근권한이 있는지 확인해주시기 바랍니다.");
 			put(DELETEFILE_ERROR, "게이트웨이에 파일을 업로드 후 삭제하는 과정에서 예외가 발생하였습니다.");
 		}
 	};

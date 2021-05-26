@@ -2,12 +2,15 @@ package com.sejong.filecontrol.aspect;
 
 import java.util.Hashtable;
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.binding.MapperMethod.MethodSignature;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sejong.filecontrol.exception.ParameterException;
 import com.sejong.filecontrol.exception.SessionException;
 
 
@@ -25,14 +28,26 @@ public class ControllerAspect{
 		Object[] paramValues = pjp.getArgs();
 		HttpServletRequest request = null;
 		
-		for (int i = 0; i < paramValues.length; i++) {
-			System.out.println(paramValues[i].getClass().getName());
-			if (paramValues[i].getClass().getName().contains("HttpServletRequest")) {
-				request = (HttpServletRequest) paramValues[i];
-				break;
+		if (paramValues == null) {
+			throw new ParameterException();
+		}
+		
+		try {
+			for (int i = 0; i < paramValues.length; i++) {
+				if (paramValues[i].getClass().getName().contains("HttpServletRequest")) {
+					request = (HttpServletRequest) paramValues[i];
+					break;
+				}
 			}
+		}catch (Exception e) {
+			throw new ParameterException();
 		}
 
+		/* 특정한 메소드는 내가 알아서 리턴한다 */
+		if (pjp.getSignature().toShortString().contains("downloadFile")) {
+			return pjp.proceed(paramValues);
+		}
+		
 		String ip = request.getHeader("X-FORWARDED-FOR");
 		Long lastSession = null;
 		
