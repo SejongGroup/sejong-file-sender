@@ -79,15 +79,15 @@ public class DownloadService {
 		scpUtil.init(serverVO.getServerIp(), serverVO.getServerId(), serverVO.getServerPw());
 		
 		/* SSH 접근 도중에 에러가 발생하면 */
-		if(scpUtil.isInVaild()) {
+		if(!scpUtil.isInVaild()) {
 			scpUtil.disconnection();
 			throw new SCPException();
 		}
 		
 		/* 에러가 발생하지 않으면 */
-		String uploadPath = ApplicationProperty.gateWayUploadPath + CommonUtil.fileSeparate()
+		String downloadPath = ApplicationProperty.gateWayDownloadPath + CommonUtil.fileSeparate()
 					+ CommonUtil.urlToday() + CommonUtil.fileSeparate() + fileVO.getUserId();
-		File path = new File(uploadPath);
+		File path = new File(downloadPath);
 		
 		/* 파일 위치 */
 		if(path.exists() == false){
@@ -97,19 +97,20 @@ public class DownloadService {
 			}
 		}
 
-		scpUtil.download(serverVO.getPath(), fileVO.getFileName(), uploadPath);
+		scpUtil.download(serverVO.getPath(), fileVO.getFileName(), downloadPath);
 		scpUtil.disconnection();
 		
 		FileVO newFileVO = new FileVO();
 		ArrayList<FileVO> list = new ArrayList<FileVO>();
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("http://localhost:8080/filecontrol/download/file?userId=");
+		sb.append("http://172.16.81.49:57070/filecontrol/download/file?userId=");
 		sb.append(fileVO.getUserId());
 		sb.append("&fileName=");
 		sb.append(fileVO.getFileName());
 		newFileVO.setFileUri(sb.toString());
 		
+		list.add(newFileVO);
 		responseVO.setFile(list);
 		return responseVO;
 	}

@@ -77,6 +77,7 @@ public class DownloadController {
 		FileVO fileVO = new FileVO();
 		fileVO.setUserId(userId);
 		fileVO.setDupCheck(fileName);
+		fileVO.setFileName(fileName);
 		ServerVO serverVO = new ServerVO();
 		serverVO.setServerIp(serverIp);
 		serverVO.setServerId(serverId);

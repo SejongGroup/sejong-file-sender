@@ -61,7 +61,7 @@ public class UploadService {
 		scpUtil.init(serverVO.getServerIp(), serverVO.getServerId(), serverVO.getServerPw());
 		
 		/* SSH 접근 도중에 에러가 발생하면 */
-		if(scpUtil.isInVaild()) {
+		if(!scpUtil.isInVaild()) {
 			/* 일단 모든 파일 삭제 */
 			for (FileVO f : responseVO.getFile()) {
 				if (!CommonUtil.deleteFile(f.getFileUri())) {
