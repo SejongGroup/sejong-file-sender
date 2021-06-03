@@ -37,14 +37,14 @@
         <td>POST</td>
         <td>
           {
-“file”: file,
-“userId”: userId,
-“dupCheck”: “true”,
-“serverIp”: serverIp,
-“serverId”: serverId,
-“serverPw”: serverPw,
-“path”: path
-}
+          “file”: file,
+          “userId”: userId,
+          “dupCheck”: “true”,
+          “serverIp”: serverIp,
+          “serverId”: serverId,
+          “serverPw”: serverPw,
+          “path”: path
+          }
       </td>        
       <td>
         {
@@ -104,21 +104,40 @@
     </tr>
 </table>
 
+<h2>다운로드</h2>
 
-
-
-
-
-
-
-
-RequestPart 데이터
-“file”: 파일,
-“userId”: 깃랩 서버에 저장될 아이디,
-“dupCheck”: 덮어쓰기 허용,
-“serverIp”: SCP 서버아이피,
-“serverId”: SCP 서버아이디,
-“serverPw”: SCP 서버비밀번호,
-“path”: SCP에 저장될 경로
-
-결과 json
+<table>
+    <tr>
+        <th>URI</th>
+        <th>Method</th>
+        <th>전송 json</th>
+        <th>결과 json</th>
+    </tr>
+    <tr>
+        <td>http://ip:port/filecontrol/download</td>
+        <td>POST</td>
+        <td>
+          {
+          “userId” userId,
+          “fileName”: fileName,
+          “serverIp”: serverIp,
+          “serverId”: serverId,
+          “serverPw”: serverPw,
+          “path”: path
+          }
+      </td>        
+      <td>
+          {
+              "result": {
+                  "resultCode": "00",
+                  "resultMessage": "성공"
+              },
+              "file": [
+                  {
+                      "fileUri": "http://203.240.153.202:57070/filecontrol/download/file?userId=kimjunho&fileName=webfront.zip"
+                  }
+              ]
+          }
+      </td>
+    </tr>
+</table>
