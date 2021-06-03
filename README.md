@@ -134,7 +134,7 @@
               },
               "file": [
                   {
-                      "fileUri": "http://203.240.153.202:57070/filecontrol/download/file?userId=kimjunho&fileName=webfront.zip"
+                      "fileUri": "http://ip:port/filecontrol/download/file?userId=kimjunho&fileName=webfront.zip"
                   }
               ]
           }
